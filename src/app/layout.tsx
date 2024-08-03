@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout";
@@ -17,8 +18,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
+        <ClerkProvider>
+            <html lang="en">
+                <body className={inter.className}>
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="system"
@@ -28,7 +30,8 @@ export default function RootLayout({
                         <Header />
                         {children}
                     </ThemeProvider>
-            </body>
-        </html>
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
